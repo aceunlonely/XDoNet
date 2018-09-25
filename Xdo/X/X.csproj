@@ -32,7 +32,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Common\Config.cs" />
     <Compile Include="Common\RemoteInvoke.cs" />
     <Compile Include="Common\WebClientWithTimeout.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Common\XConfigureHelper.cs" />
     <Compile Include="Invoke\Webapi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,22 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Web;
 
 namespace X.Common
 {
     internal class RemoteInvoke
     {
-        public static string Call(string url,string param, WebapiConfig config = null)
+        public static string Call(string url,string param, WebapiConfig config = null,Dictionary<string,string> httpRequestHeaderMap = null)
         {
             if (config == null) config = new WebapiConfig();
-
+            
             using (WebClientWithTimeout web = new WebClientWithTimeout())
             {
                 //超时过期
                 web.Timeout = (int)(1000 * config.timeoutSecond);
                 web.Proxy = null;
                 web.Encoding = config.Encode;
-
+                if (httpRequestHeaderMap != null)
+                {
+                    foreach (KeyValuePair<string, string> kv in httpRequestHeaderMap) {
+                        web.Headers.Add(kv.Key, kv.Value);
+                    }
+                }
                 if (string.IsNullOrEmpty(param) == false  )
                 {
                     if (config.ParamsType == ParamType.FORM)
@@ -32,6 +38,7 @@ namespace X.Common
                     else if (config.ParamsType == ParamType.JSON)
                     {
                         web.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+                        
                         return web.UploadString(url, config.Method.ToString(), param);
                     }
                     return web.UploadString(url, config.Method.ToString(), param);
@@ -47,7 +54,7 @@ namespace X.Common
     public class WebapiConfig
     {
         public Encoding Encode = Encoding.UTF8;
-        public double timeoutSecond = 1;
+        public double timeoutSecond = Config.XWebclientTimeoutSeconds;
         public HttpMethod Method = HttpMethod.POST;
         public ParamType ParamsType = ParamType.FORM;
     }

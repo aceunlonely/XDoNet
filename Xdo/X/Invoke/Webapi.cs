@@ -14,13 +14,12 @@ namespace X.Invoke
         /// <param name="url"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static string Get(string url, string entityForm = null, WebapiConfig config=null) {
+        public static string Get(string url, string entityForm = null, WebapiConfig config=null, Dictionary<string, string> httpRequestHeaderMap = null) {
             config = config == null ? new WebapiConfig() {
-                Method = HttpMethod.GET,
                 ParamsType = ParamType.OTHER
             } : config;
-
-           return RemoteInvoke.Call(url, entityForm, config);
+            config.Method = HttpMethod.GET;
+           return RemoteInvoke.Call(url, entityForm, config, httpRequestHeaderMap);
         }
 
         /// <summary>
@@ -30,13 +29,13 @@ namespace X.Invoke
         /// <param name="entityForm"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static string POST(string url,string entityForm,WebapiConfig config = null) {
+        public static string POST(string url,string entityForm,WebapiConfig config = null, Dictionary<string, string> httpRequestHeaderMap = null) {
             config = config == null ? new WebapiConfig()
             {
-                Method = HttpMethod.POST,
                 ParamsType = ParamType.FORM
             } : config;
-            return RemoteInvoke.Call(url, entityForm, config);
+            config.Method = HttpMethod.POST;
+            return RemoteInvoke.Call(url, entityForm, config, httpRequestHeaderMap);
         }
 
         /// <summary>
@@ -46,14 +45,14 @@ namespace X.Invoke
         /// <param name="entityForm"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static string PUT(string url, string entityForm, WebapiConfig config = null)
+        public static string PUT(string url, string entityForm, WebapiConfig config = null, Dictionary<string, string> httpRequestHeaderMap = null)
         {
             config = config == null ? new WebapiConfig()
             {
-                Method = HttpMethod.PUT,
                 ParamsType = ParamType.FORM
             } : config;
-            return RemoteInvoke.Call(url, entityForm, config);
+            config.Method = HttpMethod.PUT;
+            return RemoteInvoke.Call(url, entityForm, config, httpRequestHeaderMap);
         }
 
         /// <summary>
@@ -63,14 +62,14 @@ namespace X.Invoke
         /// <param name="entityForm"></param>
         /// <param name="config"></param>
         /// <returns></returns>
-        public static string DELETE(string url,string entityForm = null, WebapiConfig config = null)
+        public static string DELETE(string url,string entityForm = null, WebapiConfig config = null, Dictionary<string, string> httpRequestHeaderMap = null)
         {
             config = config == null ? new WebapiConfig()
             {
-                Method = HttpMethod.DELETE,
                 ParamsType = ParamType.FORM
             } : config;
-            return RemoteInvoke.Call(url, entityForm, config);
+            config.Method = HttpMethod.DELETE;
+            return RemoteInvoke.Call(url, entityForm, config, httpRequestHeaderMap);
         }
 
     }

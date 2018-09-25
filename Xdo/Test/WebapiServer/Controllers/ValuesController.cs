@@ -16,13 +16,11 @@ namespace WebapiServer.Controllers
             return new User[] { new User()
             {
                 name = "Cok",
-                age = 33,
-                date = DateTime.Now
+                age = 33
             },new User()
             {
                 name = "Jane",
-                age = 35,
-                date = DateTime.Now
+                age = 35
             }
         };
         }
@@ -33,12 +31,11 @@ namespace WebapiServer.Controllers
             return new User()
             {
                 name = "LiSA",
-                age = 30 +id,
-                date = DateTime.Now
+                age = 30 +id
             };
         }
 
-        // POST api/values
+        // POST api/values [FromBody]User u ,
         public void Post([FromBody]User u)
         {
 

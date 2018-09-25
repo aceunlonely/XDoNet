@@ -13,6 +13,5 @@ namespace WebapiClient
 
         public int age { get; set; }
 
-        public DateTime? date { get; set; }
     }
 }

@@ -17,32 +17,30 @@ namespace WebapiServer.Controllers
             return new User[] { new User()
             {
                 name = "Cok",
-                age = 33,
-                date = DateTime.Now
+                age = 33
             },new User()
             {
                 name = "Jane",
-                age = 35,
-                date = DateTime.Now
+                age = 35
             }
         };
         }
 
+        
         // GET api/values/5
         public User Get(int id)
         {
             return new User()
             {
                 name = "LiSA",
-                age = 30 + id,
-                date = DateTime.Now
+                age = 30 + id
             };
         }
-
+        
         // POST api/values
-        public void Post([FromBody]JObject u)
+        public void Post(dynamic u)
         {
-
+            
         }
 
         // PUT api/values/5
@@ -54,5 +52,7 @@ namespace WebapiServer.Controllers
         public void Delete(int id)
         {
         }
+
+
     }
 }
